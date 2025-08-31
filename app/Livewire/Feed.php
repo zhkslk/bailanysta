@@ -12,8 +12,16 @@ class Feed extends Component
 {
     use WithPagination;
 
+    public $perPage = 15;
+    public $page = 1;
+
     #[On('postsUpdated')]
     public function refresh(): void {}
+
+    public function loadMore(): void
+    {
+        $this->page++;
+    }
 
     public function getPosts()
     {
@@ -21,15 +29,13 @@ class Feed extends Component
             ->with('comments.user')
             ->withCount(['likes', 'comments'])
             ->latest()
-            ->paginate(15);
+            ->paginate($this->page * $this->perPage);
     }
 
     public function render(): View
     {
         return view('livewire.feed', [
-            'postsExist' => Post::count() > 0,
             'posts' => $this->getPosts(),
-            // todo all posts, or following
         ])->title(__('Feed'));
     }
 }

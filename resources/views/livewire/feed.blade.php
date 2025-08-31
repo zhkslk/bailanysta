@@ -12,6 +12,12 @@
             @foreach ($posts as $post)
                 @livewire('post', ['post' => $post], key($post->id))
             @endforeach
+
+            @if ($posts->hasMorePages())
+                <flux:button wire:click="loadMore" icon="chevron-down">
+                    Load more
+                </flux:button>
+            @endif
         </div>
     </div>
 
