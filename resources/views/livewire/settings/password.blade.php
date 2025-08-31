@@ -29,10 +29,6 @@
                 <div class="flex items-center justify-end">
                     <flux:button variant="primary" type="submit" class="w-full">{{ __('Save') }}</flux:button>
                 </div>
-
-                <x-action-message class="me-3" on="password-updated">
-                    {{ __('Saved.') }}
-                </x-action-message>
             </div>
         </form>
     </x-settings.layout>

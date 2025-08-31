@@ -1,8 +1,8 @@
 <div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Create an account')" :description="__('Enter your details below to create your account')" />
-
-    <!-- Session Status -->
-    <x-auth-session-status class="text-center" :status="session('status')" />
+    <div class="flex w-full flex-col text-center">
+        <flux:heading size="xl">{{ __('Create an account') }}</flux:heading>
+        <flux:subheading>{{ __('Enter your details below to create your account') }}</flux:subheading>
+    </div>
 
     <form method="POST" wire:submit="register" class="flex flex-col gap-6">
         <!-- Name -->

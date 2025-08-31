@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Settings;
+namespace App\Livewire;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
-class Profile extends Component
+class Feed extends Component
 {
     public string $username = '';
 
@@ -70,5 +70,10 @@ class Profile extends Component
         $user->sendEmailVerificationNotification();
 
         Session::flash('status', 'verification-link-sent');
+    }
+
+    public function render()
+    {
+        return view('livewire.feed');
     }
 }
