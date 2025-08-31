@@ -4,7 +4,7 @@
         <flux:heading size="lg">{{ $post->user->username }}</flux:heading>
     </a>
 
-    <p>{{ $post->body }}</p>
+    <p>{!! $post->body !!}</p>
 
     <div class="flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -14,7 +14,8 @@
                     class="cursor-pointer {{ $post->is_liked ? 'text-red-700' : '' }}"
                     :variant="$post->is_liked ? 'solid' : 'outline'"
                 />
-                {{ $post->likes()->count() }}
+                <span wire:loading.remove wire:target="toggleLike">{{ $post->likes()->count() }}</span>
+                <flux:icon.loading class="size-3" wire:loading wire:target="toggleLike" />
             </div>
 
             <div class="flex items-center gap-1">
