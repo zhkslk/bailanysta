@@ -142,7 +142,7 @@
         </flux:dropdown>
     </flux:header>
 
-    <flux:main>
+    <flux:main class="w-full lg:w-3/4">
         {{ $slot }}
     </flux:main>
 

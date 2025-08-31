@@ -1,16 +1,28 @@
-<div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
-    <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-        <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+<section class="w-full">
+    <x-heading :heading="__('Feed')" />
 
-        </div>
-        <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+    <div class="flex flex-col gap-4">
+        <flux:modal.trigger name="createPost" wire:click="$dispatch('openCreatePostModal')">
+            <flux:button icon="plus">
+                Create post
+            </flux:button>
+        </flux:modal.trigger>
 
-        </div>
-        <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-
+        <div class="flex flex-col gap-3">
+            @foreach ($posts as $post)
+                <x-card>
+                    <a href="{{ route('profile', $post->user->username) }}" class="flex items-center gap-3" wire:navigate>
+                        <flux:avatar :initials="ucfirst($post->user->username[0])" />
+                        <flux:heading size="lg">{{ $post->user->username }}</flux:heading>
+                    </a>
+                    <p>{{ $post->body }}</p>
+                    <flux:subheading class="text-right" size="sm">
+                        {{ $post->created_at->diffForHumans() }}
+                    </flux:subheading>
+                </x-card>
+            @endforeach
         </div>
     </div>
-    <div class="relative h-full flex-1 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
 
-    </div>
-</div>
+    @livewire('create-post')
+</section>
