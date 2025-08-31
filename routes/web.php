@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('', Feed::class)->name('index');
+    Route::get('friends', Feed::class)->name('friends');
+    Route::get('notifications', Feed::class)->name('notifications');
 
     Route::redirect('settings', 'settings/profile');
     Route::get('settings/profile', Profile::class)->name('settings.profile');

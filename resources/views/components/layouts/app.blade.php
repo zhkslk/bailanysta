@@ -12,9 +12,9 @@
         <flux:navlist variant="outline">
             <flux:navlist.group class="grid">
                 <flux:navlist.item class="my-1!" icon="home" :href="route('index')" :current="request()->routeIs('index')" wire:navigate>{{ __('Feed') }}</flux:navlist.item>
-                <flux:navlist.item class="my-1!" icon="home" :href="route('index')" :current="request()->routeIs('friends')" wire:navigate>{{ __('Friends') }}</flux:navlist.item>
-                <flux:navlist.item class="my-1!" icon="home" :href="route('index')" :current="request()->routeIs('notifications')" wire:navigate>{{ __('Notifications') }}</flux:navlist.item>
-                <flux:navlist.item class="my-1!" icon="home" :href="route('settings.profile')" :current="request()->routeIs('settings')" wire:navigate>{{ __('Settings') }}</flux:navlist.item>
+                <flux:navlist.item class="my-1!" icon="user-group" :href="route('friends')" :current="request()->routeIs('friends')" wire:navigate>{{ __('Friends') }}</flux:navlist.item>
+                <flux:navlist.item class="my-1!" icon="bell-alert" :href="route('notifications')" :current="request()->routeIs('notifications')" wire:navigate>{{ __('Notifications') }}</flux:navlist.item>
+                <flux:navlist.item class="my-1!" icon="cog-6-tooth" :href="route('settings.profile')" :current="request()->routeIs('settings*')" wire:navigate>{{ __('Settings') }}</flux:navlist.item>
             </flux:navlist.group>
         </flux:navlist>
 
@@ -32,13 +32,13 @@
                 <flux:menu.radio.group>
                     <div class="p-0 text-sm font-normal">
                         <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
-                                    <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
-                                        <span
-                                            class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white"
-                                        >
-                                            {{ auth()->user()->initials() }}
-                                        </span>
-                                    </span>
+                            <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
+                                <span
+                                    class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white"
+                                >
+                                    {{ auth()->user()->initials() }}
+                                </span>
+                            </span>
 
                             <div class="grid flex-1 text-start text-sm leading-tight">
                                 <span class="truncate font-semibold">{{ auth()->user()->username }}</span>
@@ -51,7 +51,7 @@
                 <flux:menu.separator />
 
                 <flux:menu.radio.group>
-                    <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
+                    <flux:menu.item :href="route('settings.profile')" icon="cog-6-tooth" wire:navigate>{{ __('Settings') }}</flux:menu.item>
                 </flux:menu.radio.group>
 
                 <flux:menu.separator />
@@ -80,19 +80,19 @@
         <flux:navbar class="-mb-px">
             <flux:navbar.item :href="route('index')" :current="request()->routeIs('index')" wire:navigate>
                 <div class="flex flex-col sm:flex-row items-center gap-1 sm:gap-3">
-                    <flux:icon.layout-grid class="size-4 sm:size-5" />
+                    <flux:icon.home class="size-4 sm:size-5" />
                     {{ __('Feed') }}
                 </div>
             </flux:navbar.item>
-            <flux:navbar.item :href="route('index')" :current="request()->routeIs('friends')" wire:navigate>
+            <flux:navbar.item :href="route('friends')" :current="request()->routeIs('friends')" wire:navigate>
                 <div class="flex flex-col sm:flex-row items-center gap-1 sm:gap-3">
-                    <flux:icon.layout-grid class="size-4 sm:size-5" />
+                    <flux:icon.user-group class="size-4 sm:size-5" />
                     {{ __('Friends') }}
                 </div>
             </flux:navbar.item>
-            <flux:navbar.item :href="route('index')" :current="request()->routeIs('friends')" wire:navigate>
+            <flux:navbar.item :href="route('notifications')" :current="request()->routeIs('notifications')" wire:navigate>
                 <div class="flex flex-col sm:flex-row items-center gap-1 sm:gap-3">
-                    <flux:icon.layout-grid class="size-4 sm:size-5" />
+                    <flux:icon.bell-alert class="size-4 sm:size-5" />
                     {{ __('Notifications') }}
                 </div>
             </flux:navbar.item>
@@ -108,13 +108,13 @@
                 <flux:menu.radio.group>
                     <div class="p-0 text-sm font-normal">
                         <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
-                                    <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
-                                        <span
-                                            class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white"
-                                        >
-                                            {{ auth()->user()->initials() }}
-                                        </span>
-                                    </span>
+                            <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
+                                <span
+                                    class="flex h-full w-full items-center justify-center rounded-lg bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white"
+                                >
+                                    {{ auth()->user()->initials() }}
+                                </span>
+                            </span>
 
                             <div class="grid flex-1 text-start text-sm leading-tight">
                                 <span class="truncate font-semibold">{{ auth()->user()->username }}</span>
@@ -127,7 +127,7 @@
                 <flux:menu.separator />
 
                 <flux:menu.radio.group>
-                    <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
+                    <flux:menu.item :href="route('settings.profile')" icon="cog-6-tooth" wire:navigate>{{ __('Settings') }}</flux:menu.item>
                 </flux:menu.radio.group>
 
                 <flux:menu.separator />
