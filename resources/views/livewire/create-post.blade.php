@@ -6,7 +6,9 @@
             <flux:heading size="lg">Create post</flux:heading>
         </div>
 
-        <flux:textarea label="Post" wire:model="body" :placeholder="__('Ne bolyp ketti?')" />
+        <flux:textarea label="Post" wire:model="body" :placeholder="__('Write a post or a prompt for AI')" />
+
+        <flux:button wire:click="generate">Generate with AI</flux:button>
 
         <div class="flex">
             <flux:spacer />
