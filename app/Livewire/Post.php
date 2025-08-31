@@ -15,6 +15,13 @@ class Post extends Component
         $this->post->likes()->toggle(auth()->user());
     }
 
+    public function delete(): void
+    {
+        $this->post->delete();
+
+        $this->dispatch('postsUpdated');
+    }
+
     public function render(): View
     {
         return view('livewire.post');

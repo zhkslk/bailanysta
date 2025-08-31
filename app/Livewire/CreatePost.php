@@ -28,7 +28,7 @@ class CreatePost extends Component
         ]);
 
         Flux::modals()->close();
-        $this->dispatch('postCreated');
+        $this->dispatch('postsUpdated');
     }
 
     public function render(): View

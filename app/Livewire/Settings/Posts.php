@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class Posts extends Component
 {
-    #[On('postCreated')]
+    #[On('postsUpdated')]
     public function refresh(): void {}
 
     public function render(): View

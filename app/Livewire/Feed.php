@@ -12,7 +12,7 @@ class Feed extends Component
 {
     use WithPagination;
 
-    #[On('postCreated')]
+    #[On('postsUpdated')]
     public function refresh(): void {}
 
     public function getPosts()
