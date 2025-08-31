@@ -12,7 +12,6 @@
         <flux:navlist variant="outline">
             <flux:navlist.group class="grid">
                 <flux:navlist.item class="my-1!" icon="home" :href="route('index')" :current="request()->routeIs('index')" wire:navigate>{{ __('Feed') }}</flux:navlist.item>
-                <flux:navlist.item class="my-1!" icon="user-group" :href="route('friends')" :current="request()->routeIs('friends')" wire:navigate>{{ __('Friends') }}</flux:navlist.item>
                 <flux:navlist.item class="my-1!" icon="bell-alert" :href="route('notifications')" :current="request()->routeIs('notifications')" wire:navigate>{{ __('Notifications') }}</flux:navlist.item>
                 <flux:navlist.item class="my-1!" icon="cog-6-tooth" :href="route('settings.profile')" :current="request()->routeIs('settings*')" wire:navigate>{{ __('Settings') }}</flux:navlist.item>
             </flux:navlist.group>
@@ -82,12 +81,6 @@
                 <div class="flex flex-col sm:flex-row items-center gap-1 sm:gap-3">
                     <flux:icon.home class="size-4 sm:size-5" />
                     {{ __('Feed') }}
-                </div>
-            </flux:navbar.item>
-            <flux:navbar.item :href="route('friends')" :current="request()->routeIs('friends')" wire:navigate>
-                <div class="flex flex-col sm:flex-row items-center gap-1 sm:gap-3">
-                    <flux:icon.user-group class="size-4 sm:size-5" />
-                    {{ __('Friends') }}
                 </div>
             </flux:navbar.item>
             <flux:navbar.item :href="route('notifications')" :current="request()->routeIs('notifications')" wire:navigate>

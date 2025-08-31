@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('', Feed::class)->name('index');
-    Route::get('friends', Friends::class)->name('friends');
     Route::get('notifications', Feed::class)->name('notifications');
 
     Route::get('/u/{username}', Feed::class)->name('profile');
