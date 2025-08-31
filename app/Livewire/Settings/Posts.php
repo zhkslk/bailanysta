@@ -17,7 +17,7 @@ class Posts extends Component
     public function render(): View
     {
         return view('livewire.settings.posts', [
-            'posts' => auth()->user()->posts()->latest()->get(),
+            'posts' => auth()->user()->posts()->withCount('likes')->latest()->get(),
         ])->title(__('My posts'));
     }
 }

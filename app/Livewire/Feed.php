@@ -15,10 +15,20 @@ class Feed extends Component
     #[On('postCreated')]
     public function refresh(): void {}
 
+    public function getPosts()
+    {
+        return Post::with('user')
+            ->withCount('likes')
+            ->latest()
+            ->paginate(15);
+    }
+
     public function render(): View
     {
         return view('livewire.feed', [
-            'posts' => Post::with('user')->latest()->paginate(15),
+            'postsExist' => Post::count() > 0,
+            'posts' => $this->getPosts(),
+            // todo all posts, or following
         ])->title(__('Feed'));
     }
 }
