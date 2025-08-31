@@ -12,7 +12,17 @@
         <flux:navlist variant="outline">
             <flux:navlist.group class="grid">
                 <flux:navlist.item class="my-1!" icon="home" :href="route('index')" :current="request()->routeIs('index')" wire:navigate>{{ __('Feed') }}</flux:navlist.item>
-                <flux:navlist.item class="my-1!" icon="bell-alert" :href="route('notifications')" :current="request()->routeIs('notifications')" wire:navigate>{{ __('Notifications') }}</flux:navlist.item>
+                <flux:navlist.item class="my-1!" icon="bell-alert" :href="route('notifications')" :current="request()->routeIs('notifications')" wire:navigate>
+                    <div class="flex items-center justify-between">
+                        {{ __('Notifications') }}
+
+                        @if (auth()->user()->unreadNotifications()->count())
+                            <flux:badge variant="pill" color="blue" size="sm" class="ms-auto">
+                                {{ auth()->user()->unreadNotifications()->count() }}
+                            </flux:badge>
+                        @endif
+                    </div>
+                </flux:navlist.item>
                 <flux:navlist.item class="my-1!" icon="cog-6-tooth" :href="route('settings.profile')" :current="request()->routeIs('settings*')" wire:navigate>{{ __('Settings') }}</flux:navlist.item>
             </flux:navlist.group>
         </flux:navlist>
@@ -86,7 +96,12 @@
             <flux:navbar.item :href="route('notifications')" :current="request()->routeIs('notifications')" wire:navigate>
                 <div class="flex flex-col sm:flex-row items-center gap-1 sm:gap-3">
                     <flux:icon.bell-alert class="size-4 sm:size-5" />
-                    {{ __('Notifications') }}
+                    <div>
+                        {{ __('Notifications') }}
+                        @if (auth()->user()->unreadNotifications()->count())
+                            ({{ auth()->user()->unreadNotifications()->count() }})
+                        @endif
+                    </div>
                 </div>
             </flux:navbar.item>
         </flux:navbar>

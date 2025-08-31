@@ -1,16 +1,39 @@
-<div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
-    <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-        <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+<section class="w-full">
+    <x-heading :heading="__('Notifications')" />
 
-        </div>
-        <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+    <div class="flex flex-col gap-3">
+        @if ($unreadCount)
+            <flux:button wire:click="markAllAsRead" icon="check">
+                Mark all as read
+            </flux:button>
+        @endif
 
-        </div>
-        <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+        @foreach ($notifications as $notification)
+            <x-card>
+                <div class="flex flex-col gap-2">
+                    <div>
+                        {!! $notification->data['message'] ?? '' !!}
+                    </div>
 
-        </div>
+                    <div class="flex items-center justify-between">
+                        <flux:subheading size="sm">
+                            {{ $notification->created_at->diffForHumans() }}
+                        </flux:subheading>
+
+                        @if (! $notification->read_at)
+                            <flux:button size="sm" wire:click="markAsRead('{{ $notification->id }}')" icon="check">
+                                Mark as read
+                            </flux:button>
+                        @endif
+                    </div>
+                </div>
+            </x-card>
+        @endforeach
+
+        @if ($notifications->hasMorePages())
+            <flux:button wire:click="loadMore" icon="chevron-down">
+                Load more
+            </flux:button>
+        @endif
     </div>
-    <div class="relative h-full flex-1 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-
-    </div>
-</div>
+</section>
