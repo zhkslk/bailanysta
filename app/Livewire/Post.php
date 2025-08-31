@@ -9,10 +9,27 @@ use Livewire\Component;
 class Post extends Component
 {
     public PostModel $post;
+    public string $commentBody = '';
+
+    public $rules = [
+        'commentBody' => 'required',
+    ];
 
     public function toggleLike(): void
     {
         $this->post->likes()->toggle(auth()->user());
+    }
+
+    public function comment(): void
+    {
+        $this->validate();
+
+        $this->post->comments()->create([
+            'user_id' => auth()->id(),
+            'body' => $this->commentBody,
+        ]);
+
+        $this->commentBody = '';
     }
 
     public function delete(): void

@@ -18,7 +18,8 @@ class Feed extends Component
     public function getPosts()
     {
         return Post::with('user')
-            ->withCount('likes')
+            ->with('comments.user')
+            ->withCount(['likes', 'comments'])
             ->latest()
             ->paginate(15);
     }
